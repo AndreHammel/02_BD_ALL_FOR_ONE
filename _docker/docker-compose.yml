@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  # Serviço que irá rodar o banco de dados
+  db:
+    container_name: mysql-5.7
+    image: mysql:5.7
+    restart: always
+    # Lista de portas mapeadas de dentro para fora do container
+    # na notação porta_de_fora:porta_de_dentro
+    ports:
+      # Expõe a porta padrão do banco de dados
+      - 3500:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - /home/andre/VSCODE/DOCKER/MYSQL/data_db:/var/lib/mysql
+# Lista de redes que os containeres irão utilizar
+networks:
+  # Rede padrão, criada automaticamente
+  default:
+    # Dá um nome específico à rede padrão
+    name: all_for_one_net
